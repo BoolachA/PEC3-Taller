@@ -1,12 +1,10 @@
 #Programa solo funciona en python 3.10 superiores debido al uso de match/case en la línea 15
+#Para facilitar la comprehensión del código crearía una función para tareas que se repiten mucho como limpiar la consola según el sistema operativo
 import os
 
-opcionValida = False
+running = True
 
 agendaDic={
-    "contacto1" : "numero1",
-    "contacto2" : "numero2",
-    "contacto3" : "numero3"
 }
 
 def limpiarConsola():
@@ -15,30 +13,54 @@ def limpiarConsola():
     else:
         os.system("clear")
 
-while(not opcionValida):
-    print("-------------AGENDA-------------\n1.Añadir Modificar\n2.Borrar\n3.Buscar\n4.Listar\n5.Salir")
-    try:
-        opcion = int(input(""))
-        if(opcion > 5 or opcion < 1):
-            raise Exception("invalidOpc")
-        else:
-            opcionValida=True
-    except:
-        print("Opción inválida")
 
-while(True):
+while(running):
+    limpiarConsola()
+    opcionValida = False
+    while(not opcionValida):
+        print("-------------AGENDA-------------\n1.Añadir Modificar\n2.Borrar\n3.Buscar\n4.Listar\n5.Salir")
+        try:
+            opcion = int(input(""))
+            if(opcion > 5 or opcion < 1):
+                raise Exception("invalidOpc")
+            else:
+                opcionValida=True
+        except:
+            print("Opción inválida")
+
+
     match opcion:
         case 1:
-            print("1")
+            limpiarConsola()
+            contacto = input("Nombre del contacto: ")
+            numero = input("Numero del contacto: ")
+            agendaDic[contacto] = numero
+            input("\nPulse cualquier tecla para continuar")
+
         case 2:
-            print("2")
+            limpiarConsola()
+            select = input("Eliminar contacto: ")
+            try:
+                del agendaDic[select]
+                print("Contacto borrado.")
+            except:
+                print("Contacto no encontrado")
+            input("\nPulse cualquier tecla para continuar")
+
         case 3:
-            print("3")
+            limpiarConsola()
+            select = input("Buscador: ")
+            try:
+                print(f"{select}: {agendaDic[select]}")
+            except:
+                print("Contacto no encontrado")
+            input("\nPulse cualquier tecla para continuar")
+
         case 4:
             limpiarConsola()
             for contacto in agendaDic:
                 print(f"{contacto}: {agendaDic[contacto]}")
-        case 5:
-            os._exit(0)
+            input("\nPulse cualquier tecla para continuar")
 
-input("")
+        case 5:
+            running = False
