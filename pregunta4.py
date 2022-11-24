@@ -1,6 +1,3 @@
-#  x x x x
-#  x x x x
-#  x x x x
 import os
 
 matrizA = [[],[],[],[]]
@@ -31,6 +28,12 @@ def requestMatriz(matriz):
             limpiarConsola()
     return matrizTexto(matriz)
 
+def sumMatrices(matriz1,matriz2):
+    matrizFinal = [[],[],[],[]]
+    for x in range(4):
+        for y in range(3):
+            matrizFinal[x].append(matriz1[x][y]+matriz2[x][y])
+    return matrizTexto(matrizFinal)
 
 if __name__ == "__main__":
     limpiarConsola()
@@ -38,4 +41,4 @@ if __name__ == "__main__":
     input("Pulse cualquier botón para continuar con la matriz B")
     print(requestMatriz(matrizB))
     input("Pulse cualquier botón para continuar con la suma\n")
-    input("")
+    print(sumMatrices(matrizA,matrizB))
