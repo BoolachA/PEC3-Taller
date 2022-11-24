@@ -16,10 +16,11 @@ for x in tweet:
     elif(x == " "):
         countHashtag = False
         if(len(palabra)>=1):
-                hashtags.append(palabra)
+            hashtags.append(palabra)
         palabra=""
 
     if(countHashtag == True):
         palabra += x
 
-print(hashtags)
+print("Hashtags: ", hashtags)
+input("")
