@@ -1,9 +1,5 @@
 import os
 
-#Creamos las matrices A y B
-matrizA = [[],[],[],[]]
-matrizB = [[],[],[],[]]
-
 #Función encargada de limpiar la consola segun el sistema operativo, retorna el 0 para indicar que su correcto funcionamiento
 def limpiarConsola():
     if(os.name == "nt"):
@@ -29,6 +25,7 @@ def matrizTexto(matriz):
 
 #Función que toma como entrada una matriz, pide al usuário rellenarla y devuelve un string con la matriz impresa en 3 lineas (con la función anterior)
 def requestMatriz(matriz):
+    matriz = [[], [], [], []]
     #Forzamos que la matriz tenga una dimensión de 4x3
     for x in range(4):
         for y in range(3):
@@ -44,7 +41,7 @@ def requestMatriz(matriz):
                     print("Solamente numeros enteros.")
             limpiarConsola()
     #Llamamos la función de imprimir matrices para retornar el texto de la matriz modificada
-    return matrizTexto(matriz)
+    return matriz
 
 #Función que toma como entrada dos matrices y las suma, devolviendo un string con la matriz final impresa en 3 lineas
 def sumMatrices(matriz1,matriz2):
@@ -54,17 +51,20 @@ def sumMatrices(matriz1,matriz2):
         for y in range(3):
             #Se añade a la matriz final la suma de ambos elementos
             matrizFinal[x].append(matriz1[x][y]+matriz2[x][y])
-    return matrizTexto(matrizFinal)
+    return matrizFinal
 
 if __name__ == "__main__":
     print("Valores para matriz A: ")
     #Llamamos la función que rellena la matriz indicada y la imprime en pantalla
-    print(requestMatriz(matrizA))
+    matrizA = requestMatriz()
+    print(matrizTexto(matrizA))
     input("Pulse cualquier botón para continuar con la matriz B")
-    print(requestMatriz(matrizB))
+    matrizB = requestMatriz()
+    print(matrizTexto(matrizB))
     limpiarConsola()
     input(f"La matriz:\n{matrizTexto(matrizA)}\nSerá sumada con:\n{matrizTexto(matrizB)}\nPresione cualquier botón para continuar")
     limpiarConsola()
     #Llamamos la función suma las matrices indicadas y nos devuelve un string con el resultado
-    print(f"Resultado:\n{sumMatrices(matrizA,matrizB)}")
+    sumaMatrices = sumMatrices(matrizA,matrizB)
+    print(f"Resultado:\n{matrizTexto(sumaMatrices)}")
     input("")
