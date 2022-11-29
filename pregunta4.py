@@ -24,7 +24,7 @@ def matrizTexto(matriz):
     return lineaFinal
 
 #Función que toma como entrada una matriz, pide al usuário rellenarla y devuelve un string con la matriz impresa en 3 lineas (con la función anterior)
-def requestMatriz(matriz):
+def requestMatriz():
     matriz = [[], [], [], []]
     #Forzamos que la matriz tenga una dimensión de 4x3
     for x in range(4):
